@@ -1,0 +1,132 @@
+Rolling notes
+Final Project title: AWS Data Pipeline 
+Final Project Phases: Demo date 11/22-23 (7 weeks)
+
+
+* We will tentatively starting from week2 have a quick standup meeting(about 15 to 20 minutes; 5:00pm before the training session assuming that the session won’t start early than 5:30) daily to discuss about task progress for each person and provision things to do for the next week at the end of the current week (Friday of each week)
+
+
+
+
+Week4
+
+
+
+
+——————————————————————————————————————————
+Week3 (10/17/22/ - 10/21/22)
+* Tools involved 
+   * AWS(tentative)
+      * AWS Eventbridge
+         * Log data streaming events on AWS kinesis if we have decided that we want to utilize the technology
+      * AWS Kinesis 
+         * Streamline our data pipeline to retrieve large amounts of data
+      * DynamoDB
+         * For storing key-value pairs between the processed and raw data 
+         * Raw data will be stored on s3
+   * Other new tech involved 
+      * None
+   * Ongoing 
+      * AWS
+         * AWS Lambda 
+         * AWS S3
+         * awswrangler 
+         * Boto3 
+         * AWS CLI
+      * Other
+         * Social Media API
+         * Monday.com 
+         * Discord 
+         * Zoom 
+         * Terraform
+         * VS code
+         * Numpy
+         * Pandas 
+Responsibilities
+   * Shiyi to have the data pulling pipeline setup and run a single streaming event
+   * Patrick to have taken the first batch of data pulled from the api in transformed it and stored on our s3 bucket; 
+   * William to have been able to receive logs of the streaming event and understood how to manage to create a daily schedule to run the pipeline
+   * Kenneth to have adjusted the terraform configuration and created the final template for the technologies that we are using on AWS
+——————————————————————————————————————————
+
+
+Week2 (10/10/22 - 10/14/22; starting stand-up meeting)
+Tools involved 
+AWS(tentative)
+      * AWS Lambda 
+         * Creating serverless functions in Python to run things 
+      * AWS S3
+         * Storing data we pulled from data pipeline
+      * awswrangler 
+         * SDK for data wrangling with Pandas on AWS
+      * Boto3
+         * AWS Package for Python
+      * AWS CLI
+         * Command line access to create IAM templates, uploading policies, manage roles, etc 
+      * AWS CloudWatch 
+         * Getting Logs of data streaming events and creating notifications from data streaming 
+Other new tech involved 
+      * Social media API (Instagram, facebook, or Twitter)
+         * Devices that we are pulling data from
+      * Pandas
+         * To parquet and wrangle the image data
+      * Numpy
+         * We will use numpy to transform the image data 
+      * Zoom 
+         * Zoom for daily standup meeting (15 minutes)
+      * Terraform 
+         * Template scripting aws cloud management and automation 
+Ongoing 
+      * AWS
+         * None
+      * Other
+         * Monday.com 
+         * Discord 
+         * Zoom 
+         * Terraform
+         * VS code
+         * Google drive
+
+
+
+
+Responsibilities
+   * Shiyi to research about data pulling from different APIs and settle on what data to collect (either image data currently from instagram or language data)
+
+
+   * Patrick to research about data transformation and wrangling in Python (Numpy and pandas; aws has a tool called awswrangler which is an aws sdk for pandas); have settled on what kind of policies are attached which role we are creating 
+
+
+   * William to research about getting notifications from data streaming events, cron scheduling, logs of streaming data, etc 
+
+
+   * Kenneth to create terraform template if we have settled on all the aws services we want to use (currently technologies that we are definitely using is an s3 bucket; aws lambda; technologies that we might use aws kinesis and EC2) 
+
+
+——————————————————————————————————————————
+
+
+
+
+Week1 (10/03/22 - 10/07/22)
+Tools involved 
+   * AWS 
+      * None
+   * New tech invovled 
+      * Airtable
+         * We will be using airtable to manage all of the tasks
+      * Discord 
+         * Discord to manage all of the chats
+      * VS Code 
+         * Visual studio code to manage all of the coding parts
+      * Google drive
+         * To manage all project related things (meeting notes, write-ups, powerpoints, graphs, etc)
+      * Terraform 
+         * Template scripting aws cloud management and automation 
+   * Ongoing         
+      * None
+Responsibilities 
+   * Shiyi to draft high level project plan and create Airtable accounts, and research about coding collaboration 
+   * Patrick to create new account manage IAM users/roles and collabing with other team
+   * William to research about managing projects on Airtable agile management style and sprints
+   * Kenneth to research more about cloud management and template scripting for AWS on Terraform

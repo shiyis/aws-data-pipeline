@@ -1,0 +1,116 @@
+﻿Final project proposal
+Group 4 - Shiyi S, Patrick R, William E, Kenneth C 
+
+
+Abstract 
+
+
+We decided to create a Data Pipeline on AWS that could facilitate the process of building a Natural Language Processing tool. The tool will utilize a simple machine learning algorithm or one/two layer neural network to train a topic modeler or sentiment analyzer or a recommender. The technologies (tentative) that will be used in this project
+
+
+* Lambda and SAM to streamline a simple ETL data pipeline that extracts, processes, and load the data from Twitter API 
+* Eventbridge(Cloudwatch events) to log and monitor state changes 
+* S3 Bucket to store the raw retrieved data (potentially utilize DynamoDB to store the parsed and processed data for future analytics)
+* Sagemaker to create a notebook for hosting the ML project code, fine-tuning  parameters, pipelining and storing the models
+* Pandas to ingest and wrangle the data and preprocess it for ML training
+* EC2 to create a VM that hosts the workflow or provide workers for training if needed 
+* (Tentative) DynamoDB to store a structured version of the output data for future reference 
+
+
+Outline 
+
+
+The downstream tasks (roughly) will look like below
+
+
+* Pulling Data Twitter Data from API or Scraping tweets using 3rd party lib triggered by Lambda 
+* Data preprocessing into clean format and storing into S3
+* Creating a Sagemaker notebook 
+* Ingest data and data wrangling 
+* Generate Machine Learning Model readable embeddings
+* Choosing a model to classify 
+* Inference Pipeline 
+* Potentially hosting the model on a EC2 instance 
+
+
+
+
+Repos and docs that will help guide through this project 
+
+
+AWS Serverless Application Model(SAM)Specification 
+https://docs.aws.amazon.com/serverless-application-model/latest/developerguide/serverless-application-model.pdf
+Serverless Data Processing 
+https://aws.amazon.com/lambda/data-processing/
+Micro ETL pipeline: How to fetch, process, and refresh small data using AWS Lambda
+https://aws.amazon.com/blogs/devops/micro-etl-pipeline-how-to-fetch-process-and-refresh-small-data-using-aws-lambda-and-aws-sam/
+Build A Near Real-Time Discovery Platform with AWS
+https://aws.amazon.com/blogs/big-data/building-a-near-real-time-discovery-platform-with-aws/
+Create A Machine Learning Model Automatically
+https://aws.amazon.com/getting-started/hands-on/create-machine-learning-model-automatically-sagemaker-autopilot/
+Create A Wine Recommender Using NLP on AWS
+https://blog.jonaylor.xyz/create-a-wine-recommender-using-nlp-on-aws#heading-clean-up
+How to build an NLP Pipeline on AWS
+https://towardsai.net/p/l/how-to-build-an-nlp-pipeline-on-aws
+AWS Pandas SDK to retrieve data directly from S3
+https://github.com/aws/aws-sdk-pandas
+Amazon SageMaker Processing – Fully Managed Data Processing and Model Evaluation
+https://aws.amazon.com/blogs/aws/amazon-sagemaker-processing-fully-managed-data-processing-and-model-evaluation/
+Automate model development with Amazon SageMaker Autopilot
+https://docs.aws.amazon.com/sagemaker/latest/dg/autopilot-automate-model-development.html#autopilot-video-choose-and-deploy-the-best-model
+Healthcare and Life Sciences Amazon SageMaker and AI/ML Immersion Day Workshops
+https://github.com/aws-samples/aws-healthcare-lifescience-ai-ml-sample-notebooks/tree/main/workshops
+Twitter API v2 Sample code 
+https://github.com/twitterdev/Twitter-API-v2-sample-code
+\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+Application diagram 
+
+
+Version 1
+  
+
+
+
+Version 2
