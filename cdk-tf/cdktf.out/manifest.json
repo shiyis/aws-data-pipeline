@@ -1,0 +1,13 @@
+{
+  "version": "0.12.3",
+  "stacks": {
+    "aws_instance": {
+      "name": "aws_instance",
+      "constructPath": "aws_instance",
+      "workingDirectory": "stacks/aws_instance",
+      "synthesizedStackPath": "stacks/aws_instance/cdk.tf.json",
+      "annotations": [],
+      "dependencies": []
+    }
+  }
+}
