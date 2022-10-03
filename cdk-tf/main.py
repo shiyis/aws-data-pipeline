@@ -5,8 +5,8 @@ from cdktf import App, NamedRemoteWorkspace, TerraformStack, TerraformOutput, Re
 from cdktf_cdktf_provider_aws import AwsProvider, ec2 
 import json
 
-ACCESS_KEY = "AKIAW7FIH46GF2X7JRXB"
-SECRET_KEY = "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"
+ACCESS_KEY = ""
+SECRET_KEY = ""
 REGION = "us-west-1"
 
 class MyStack(TerraformStack):
