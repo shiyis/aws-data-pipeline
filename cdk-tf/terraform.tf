@@ -1,7 +1,7 @@
 provider "aws" {
   region     = "us-west-1"
-  access_key = "AKIAW7FIH46GO5UPENR3"
-  secret_key = "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"
+  access_key = ""
+  secret_key = ""
 
   #TODO
   #configure aws roles in terraform template
