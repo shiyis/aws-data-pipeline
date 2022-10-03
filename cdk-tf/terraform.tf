@@ -19,8 +19,8 @@ terraform {
 
 provider "aws" {
   region = var.aws_region
-  access_key = "AKIAW7FIH46GIRPEXTSG"
-  secret_key = "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"
+  access_key = ""
+  secret_key = ""
   assume_role {
     duration_seconds = 3600
     session_name = "session-name"
