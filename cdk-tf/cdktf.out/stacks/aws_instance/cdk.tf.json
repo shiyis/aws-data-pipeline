@@ -7,29 +7,31 @@
     },
     "outputs": {
       "aws_instance": {
-        "public_ip": "awsinstance_publicip_05872120"
+        "public_ip": "public_ip"
       }
     }
   },
   "output": {
-    "awsinstance_publicip_05872120": {
-      "value": "${aws_instance.awsinstance_compute_1DCE826E.public_ip}"
+    "public_ip": {
+      "value": "${aws_instance.compute.public_ip}"
     }
   },
   "provider": {
     "aws": [
       {
-        "region": "us-west-1"
+        "access_key": "AKIAW7FIH46GF2X7JRXB",
+        "region": "us-west-1",
+        "secret_key": "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"
       }
     ]
   },
   "resource": {
     "aws_instance": {
-      "awsinstance_compute_1DCE826E": {
+      "compute": {
         "//": {
           "metadata": {
             "path": "aws_instance/compute",
-            "uniqueId": "awsinstance_compute_1DCE826E"
+            "uniqueId": "compute"
           }
         },
         "ami": "ami-01456a894f71116f2",
@@ -43,14 +45,14 @@
         "hostname": "app.terraform.io",
         "organization": "quintrix-aws-data-pipeline",
         "workspaces": {
-          "name": "cdk-tf"
+          "name": "aws-data-streaming-pipeline"
         }
       }
     },
     "required_providers": {
       "aws": {
         "source": "aws",
-        "version": "4.32.0"
+        "version": "4.33.0"
       }
     }
   }

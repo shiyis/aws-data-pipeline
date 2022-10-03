@@ -1,22 +1,9 @@
-provider "aws" {
-  region     = "us-west-1"
-  access_key = ""
-  secret_key = ""
-
-  #TODO
-  #configure aws roles in terraform template
-  #assume_role{
-  #  role_arn = ""
-  #  session_name = ""
-  #  external_id = ""
-  #}
-}
 
 terraform {
   required_providers {
     aws = {
       source  = "hashicorp/aws"
-      version = "~> 4.0"
+      version = "~> 4.1"
     }
   }
 
@@ -26,6 +13,25 @@ terraform {
     workspaces {
       name = "aws-data-streaming-pipeline"
     }
+}
+}
+
+
+provider "aws" {
+  region = var.aws_region
+  access_key = "AKIAW7FIH46GIRPEXTSG"
+  secret_key = "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"
+  assume_role {
+    duration_seconds = 3600
+    session_name = "session-name"
+    role_arn = var.aws_deployment_role
   }
 
+  #TODO
+  #configure aws roles in terraform template
+  #assume_role{
+  #  role_arn = ""
+  #  session_name = ""
+  #  external_id = ""
+  #}
 }

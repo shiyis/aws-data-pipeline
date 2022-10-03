@@ -1,57 +1,13 @@
 {
-  "//": {
-    "metadata": {
-      "backend": "remote",
-      "stackName": "aws_instance",
-      "version": "0.12.3"
-    },
-    "outputs": {
-      "aws_instance": {
-        "public_ip": "awsinstance_publicip_05872120"
-      }
-    }
-  },
-  "output": {
-    "awsinstance_publicip_05872120": {
-      "value": "${aws_instance.awsinstance_compute_1DCE826E.public_ip}"
-    }
-  },
-  "provider": {
-    "aws": [
-      {
-        "region": "us-west-1"
-      }
-    ]
-  },
-  "resource": {
-    "aws_instance": {
-      "awsinstance_compute_1DCE826E": {
-        "//": {
-          "metadata": {
-            "path": "aws_instance/compute",
-            "uniqueId": "awsinstance_compute_1DCE826E"
-          }
-        },
-        "ami": "ami-01456a894f71116f2",
-        "instance_type": "t2.micro"
-      }
-    }
-  },
-  "terraform": {
-    "backend": {
-      "remote": {
-        "hostname": "app.terraform.io",
-        "organization": "quintrix-aws-data-pipeline",
-        "workspaces": {
-          "name": "learn-cdktf"
-        }
-      }
-    },
-    "required_providers": {
-      "aws": {
-        "source": "aws",
-        "version": "4.32.0"
-      }
-    }
+  "language": "python",
+  "app": "pipenv run python main.py",
+  "projectId": "c8d410c5-9b4b-4689-96fa-ec740a9e2072",
+  "sendCrashReports": "true",
+  "terraformProviders": ["aws"],
+  "terraformModules": [],
+  "codeMakerOutput": "imports",
+  "context": {
+    "excludeStackIdFromLogicalIds": "true",
+    "allowSepCharsInLogicalIds": "true"
   }
 }

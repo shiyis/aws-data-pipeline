@@ -92,14 +92,8 @@ Ongoing
 
 Responsibilities
    * Shiyi to research about data pulling from different APIs and settle on what data to collect (either image data currently from instagram or language data)
-
-
    * Patrick to research about data transformation and wrangling in Python (Numpy and pandas; aws has a tool called awswrangler which is an aws sdk for pandas); have settled on what kind of policies are attached which role we are creating 
-
-
    * William to research about getting notifications from data streaming events, cron scheduling, logs of streaming data, etc 
-
-
    * Kenneth to create terraform template if we have settled on all the aws services we want to use (currently technologies that we are definitely using is an s3 bucket; aws lambda; technologies that we might use aws kinesis and EC2) 
 
 
