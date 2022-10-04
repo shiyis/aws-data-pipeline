@@ -63,6 +63,7 @@ https://github.com/aws-samples/aws-healthcare-lifescience-ai-ml-sample-notebooks
 Twitter API v2 Sample code 
 https://github.com/twitterdev/Twitter-API-v2-sample-code
 
+https://github.com/awslabs/aws-serverless-twitter-event-source
 
 
 
