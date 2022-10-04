@@ -2,7 +2,7 @@
 from os import access
 from constructs import Construct
 from cdktf import App, NamedRemoteWorkspace, TerraformStack, TerraformOutput, RemoteBackend
-from cdktf_cdktf_provider_aws import AwsProvider, ec2 
+from cdktf_cdktf_provider_aws import AwsProvider, dynamodb,ec2, lambdafunction, s3, cloudwatch, sagemaker
 import json
 
 ACCESS_KEY = ""
@@ -19,6 +19,9 @@ class MyStack(TerraformStack):
                                 ami="ami-01456a894f71116f2",
                                 instance_type="t2.micro",
                                 )
+        
+        lambdn_fn = ...
+        s3_bucket = ...
 
         TerraformOutput(self, "public_ip",
                         value=instance.public_ip,
