@@ -9,7 +9,7 @@ ACCESS_KEY = ""
 SECRET_KEY = ""
 REGION = "us-west-1"
 
-class MyStack(TerraformStack):
+class AWSDataPipelineStack(TerraformStack):
     def __init__(self, scope: Construct, ns: str):
         super().__init__(scope, ns)
 
@@ -22,14 +22,23 @@ class MyStack(TerraformStack):
         
         lambdn_fn = ...
         s3_bucket = ...
+        sagemaker = ...
+        dynamodb = ...
+        cloudwatch = ...
+        iam_config = ...
+
 
         TerraformOutput(self, "public_ip",
                         value=instance.public_ip,
                         )
 
+        TerraformOutput(self, "instance_id",
+                        value=instance.id,
+                        )
+
 
 app = App()
-stack = MyStack(app, "aws_instance")
+stack = AWSDataPipelineStack(app, "aws_instance")
 
 RemoteBackend(stack,
               hostname='app.terraform.io',

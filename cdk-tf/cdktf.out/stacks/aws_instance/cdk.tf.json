@@ -19,9 +19,9 @@
   "provider": {
     "aws": [
       {
-        "access_key": "AKIAW7FIH46GF2X7JRXB",
+        "access_key": "",
         "region": "us-west-1",
-        "secret_key": "R7snla1+MRYidTFNKSNRtGvuMsL+hWuDCG41a7cr"
+        "secret_key": ""
       }
     ]
   },

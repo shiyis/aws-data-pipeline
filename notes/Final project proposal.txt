@@ -62,7 +62,7 @@ Healthcare and Life Sciences Amazon SageMaker and AI/ML Immersion Day Workshops
 https://github.com/aws-samples/aws-healthcare-lifescience-ai-ml-sample-notebooks/tree/main/workshops
 Twitter API v2 Sample code 
 https://github.com/twitterdev/Twitter-API-v2-sample-code
-
+AWS Serverless Twitter Event Source
 https://github.com/awslabs/aws-serverless-twitter-event-source
 
 
