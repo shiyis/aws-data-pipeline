@@ -8,6 +8,7 @@ resource "aws_sagemaker_notebook_instance" "Sagemaker-instance" {
   }
 }
 
+#OPTION 2
 #CreateSagemaker repo w/ instance
 resource "aws_sagemaker_code_repository" "Sagemaker-Repo" {
   code_repository_name = "Instance-repo"
