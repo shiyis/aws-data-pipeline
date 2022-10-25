@@ -1,8 +1,8 @@
 #Create Sagemaker notebook instance
 resource "aws_sagemaker_notebook_instance" "Sagemaker-instance" {
   name = "Data-Sagemaker"
-  role_arn =
-  instance_type =
+  role_arn = ""
+  instance_type = ""
   tags = {
     Name = "AWS Pipeline"
   }
@@ -23,6 +23,6 @@ resource "aws_sagemaker_notebook_instance" "Sagemaker-instance" {
   default_code_repository = ""
 
   tags = {
-    Name =
+    Name = ""
   }
 }

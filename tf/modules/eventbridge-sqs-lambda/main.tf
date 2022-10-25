@@ -27,7 +27,7 @@ resource "aws_sqs_queue" "event_queue" {
     fifo = false
 
     tags = local.common_tags
-}
+} # We don't need a policy on the queue because
 
 # data "aws_iam_policy_document" "queue_policy" {
 #     statement {
@@ -105,16 +105,49 @@ resource "aws_lambda_function" "twitter_poller" {
    
     function_name = "twitter_poller"
     description = "Pulls tweets, may be the function that preprocesses them as well"
-    role = ""
+    role = aws_iam_role.lambda_execution_role.arn
     
-    #filename = "" # file containing the function code
+    #filename = "" # local file containing the function code
     #s3_bucket = "" # use a location, not a bucket name
     runtime = "python3.9"
-    timeout = 3 # 3 is default, we will be using something different
+    timeout = 600 # 3 (seconds) is default, we will be using something larger
 
     tags = local.common_tags
 }
 
+resource "aws_lambda_event_source_mapping" "schedule_mapping" {
+    event_source_arn = aws_sqs_queue.event_queue.arn
+    function_name = aws_lambda_function.twitter_poller.name
+
+    maximum_retry_attempts = 1
+}
+
 # Begin policy and role crap again
+data "aws_iam_policy_document" "lambda_policy" {
+    statement {
+      sid = "Allow twitter poller to access s3"
+      effect = "Allow"
+      actions = ["s3:*"]
+    }
+}
+
+resource "aws_iam_role" "lambda_execution_role" {
+    name = "twitter-poller-role"
+    assume_role_policy = data.aws_iam_policy_document.assume_role_multi_purpose.json
+
+    tags = local.common_tags
+}
+
+resource "aws_iam_policy" "lambda_policy" {
+    name = "twitter-poller-policy"
+    policy = data.aws_iam_policy_document.lambda_policy.json
+
+    tags = local.common_tags
+}
+
+resource "aws_iam_role_policy_attachment" "lambda_policy_attach" {
+    role = aws_iam_role.lambda_execution_role.name
+    policy_arn = aws_iam_policy.lambda_policy.arn
+}
 
 # End policy and role crap again
