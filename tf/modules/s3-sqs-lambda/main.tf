@@ -22,7 +22,7 @@ resource "aws_sqs_queue" "queue" {
       "Resource": "${aws_sqs_queue.q.arn}",
       "Condition": {
         "ArnEquals": {
-          "aws:SourceArn": "${aws_sns_topic.example.arn}"
+          "aws:SourceArn": "${arn:aws:s3:::<BUCKET-NAME>}"
         }
       }
     }
@@ -35,11 +35,6 @@ POLICY
   # max_message_size          = 
   # message_retention_seconds = 
   # receive_wait_time_seconds = 
-
-  redrive_policy = jsonencode({
-    deadLetterTargetArn = aws_sqs_queue.terraform_queue_deadletter.arn
-    maxReceiveCount     = 4
-  })
 
   tags = {
     Environment = " "
@@ -55,6 +50,7 @@ resource "aws_lambda_event_source_mapping" "sqsLambda" {
 #Create Lambda role
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
+  path = ""
 
   assume_role_policy = <<EOF
 {
@@ -72,6 +68,8 @@ resource "aws_iam_role" "iam_for_lambda" {
 }
 EOF
 }
+
+
 #Create Lambda function
 resource "aws_lambda_function" "test_lambda" {
   # If the file is not in the current working directory you will need to include a
@@ -80,4 +78,40 @@ resource "aws_lambda_function" "test_lambda" {
   function_name = " "
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = " "
+  s3_bucket     = ""
+  s3_key        = ""
 }
+
+
+
+#Create Policy for IAM Role w/ specified access to s3
+resource "aws_iam_policy" "Lambda-S3-Policy" {
+  name = "LambdaS3-test-policy"
+  descriptiom = "Lambda access to S3"
+  policy = <<EOF
+{ 
+"Version": "2012-10-17"
+"Statement": [
+  {
+  "Effect": "Allow",
+  "Action": [
+      "logs:*"
+    ],
+    "Resource": "arn:aws:logs:*:*:*"
+  },
+  {
+      "Effect": "Allow",
+      "Action": [
+        "s3:*"
+        ],
+      "Resource": "arn:aws:s3:::<BUCKET-NAME>*"
+  }
+  ]
+}
+  EOF
+}
+
+#Attach IAM Role and Policy
+resource "aws_iam_role_policy_attachment" "role-attach" {
+  role = "aws_iam_role.iam_for_lambda.name"
+  policy = "aws_iam_policy.Lambda-S3-Policy.arn"
