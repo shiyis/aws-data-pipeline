@@ -29,11 +29,13 @@ resource "aws_sqs_queue" "queue" {
   ]
 }
 POLICY
+
   fifo_queue                = false
   delay_seconds             = 0
   # max_message_size          = 
   # message_retention_seconds = 
   # receive_wait_time_seconds = 
+
   redrive_policy = jsonencode({
     deadLetterTargetArn = aws_sqs_queue.terraform_queue_deadletter.arn
     maxReceiveCount     = 4
