@@ -16,36 +16,30 @@ resource "aws_lambda_function" "filtered_stream" {
     s3_bucket = "${var.code_bucket_name}/lambda_code/filtered_stream.py" # If using s3 bucket (location), do not use filename
     runtime = "python3.8"
     timeout = 600 # 3 (seconds) is default, we will be using something larger
-
-    tags = local.common_tags
 }
 
 resource "aws_lambda_function" "preprocess" {
    
     function_name = "preprocess"
     description = "Function for partial processing of twitter data"
-    role = aws_iam_role.preprocess_lambda_role.arn
+    role = aws_iam_role.preprocess_role.arn
     
     #filename = "" # If using a filename, do not use s3 bucket
     s3_bucket = "${var.code_bucket_name}/lambda_code/preprocess.py" # If using s3 bucket (location), do not use filename
     runtime = "python3.8"
     timeout = 600 # 3 (seconds) is default, we will be using something larger
-
-    tags = local.common_tags
 }
 
 resource "aws_lambda_function" "load_data" {
    
     function_name = "load_data"
     description = "Function that loads data into s3 bucket"
-    role = aws_iam_role.load_data_role
+    role = aws_iam_role.load_data_role.arn
     
     #filename = "" # If using a filename, do not use s3 bucket
     s3_bucket = "${var.code_bucket_name}/lambda_code/load_data.py" # If using s3 bucket (location), do not use filename
     runtime = "python3.8"
     timeout = 600 # 3 (seconds) is default, we will be using something larger
-
-    tags = local.common_tags
 }
 
 # Functions created, moving on to roles for them
@@ -117,7 +111,7 @@ resource "aws_iam_policy" "filtered_stream_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "filtered_stream_attach" {
-    name = aws_iam_role.filtered_stream_role.name
+    role = aws_iam_role.filtered_stream_role.name
     policy_arn = aws_iam_policy.filtered_stream_policy.arn
 }
 
@@ -134,7 +128,7 @@ resource "aws_iam_policy" "preprocess_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "preprocess_attach" {
-    name = aws_iam_role.preprocess_role.name
+    role = aws_iam_role.preprocess_role.name
     policy_arn = aws_iam_policy.preprocess_policy.arn
 }
 
@@ -151,7 +145,7 @@ resource "aws_iam_policy" "load_data_policy" {
 }
 
 resource "aws_iam_role_policy_attachment" "load_data_attach" {
-    name = aws_iam_role.load_data_role.name
+    role = aws_iam_role.load_data_role.name
     policy_arn = aws_iam_policy.load_data_policy.arn
 }
 
@@ -272,7 +266,7 @@ resource "aws_iam_role" "state_machine_role" {
 
 resource "aws_iam_policy" "state_machine_policy" {
     name = "poller_policy"
-    policy = aws_iam_policy_document.state_machine_policy_doc.json
+    policy = data.aws_iam_policy_document.state_machine_policy_doc.json
 }
 
 resource "aws_iam_policy_attachment" "state_machine_attachment" {
@@ -284,6 +278,10 @@ resource "aws_iam_policy_attachment" "state_machine_attachment" {
 # Now we need to create the eventbridge rule to schedule this
 
 resource "aws_cloudwatch_event_rule" "state_schedule" {
+    depends_on = [
+      aws_sfn_state_machine.pipeline
+    ]
+
     name = "state-machine-schedule"
     schedule_expression = "rate(1 day)"
 
