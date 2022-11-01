@@ -2,6 +2,11 @@
 # the sqs queue that acts as the go-between. Outputs include the arn of the lambda function so that it
 # can be included in policies.
 
+/*
+If we use the state machine, this entire module is irrelevant. DON'T CALL BOTH THIS MODULE AND state_machine-lambda.
+The state machine handles the scheduling and the carrying of data between the lambda functions
+*/
+
 locals {
     common_tags = { # Tags to put on every resource
         "Name" = "Final-project"
