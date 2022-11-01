@@ -1,6 +1,6 @@
 variable "enable_schedule" {
     type = bool
-    default = false
+    default = true
 }
 
 variable "code_bucket_name" {
