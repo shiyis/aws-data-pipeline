@@ -22,7 +22,7 @@ resource "aws_sqs_queue" "queue" {
       "Resource": "${aws_sqs_queue.q.arn}",
       "Condition": {
         "ArnEquals": {
-          "aws:SourceArn": "${arn:aws:s3:::<BUCKET-NAME>}"
+          "aws:SourceArn": "arn:aws:s3:::${var.bucket_name}"
         }
       }
     }
@@ -115,3 +115,4 @@ resource "aws_iam_policy" "Lambda-S3-Policy" {
 resource "aws_iam_role_policy_attachment" "role-attach" {
   role = "aws_iam_role.iam_for_lambda.name"
   policy = "aws_iam_policy.Lambda-S3-Policy.arn"
+}
