@@ -19,10 +19,10 @@ resource "aws_sqs_queue" "queue" {
       "Effect": "Allow",
       "Principal": "*",
       "Action": "sqs:SendMessage",
-      "Resource": "${aws_sqs_queue.q.arn}",
+      "Resource": "${aws_sqs_queue.queue.arn}",
       "Condition": {
         "ArnEquals": {
-          "aws:SourceArn": "${arn:aws:s3:::<BUCKET-NAME>}"
+          "aws:SourceArn": "arn:aws:s3:::${var.bucket-name}}"
         }
       }
     }
@@ -50,7 +50,7 @@ resource "aws_lambda_event_source_mapping" "sqsLambda" {
 #Create Lambda role
 resource "aws_iam_role" "iam_for_lambda" {
   name = "iam_for_lambda"
-  path = ""
+  # path = ""
 
   assume_role_policy = <<EOF
 {
@@ -74,12 +74,12 @@ EOF
 resource "aws_lambda_function" "test_lambda" {
   # If the file is not in the current working directory you will need to include a
   # path.module in the filename.
-  filename      = " "
+  # filename      = " "
   function_name = " "
   role          = aws_iam_role.iam_for_lambda.arn
   handler       = " "
   s3_bucket     = ""
-  s3_key        = ""
+  # s3_key        = ""
 }
 
 
@@ -115,3 +115,4 @@ resource "aws_iam_policy" "Lambda-S3-Policy" {
 resource "aws_iam_role_policy_attachment" "role-attach" {
   role = "aws_iam_role.iam_for_lambda.name"
   policy = "aws_iam_policy.Lambda-S3-Policy.arn"
+}
